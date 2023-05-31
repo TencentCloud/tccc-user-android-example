@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CallingActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_videocall_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="340dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="bottom|center_horizontal|center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:gravity="center|top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/teal_200"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center|top"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/ll_mute_mic"
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="bottom|center_horizontal|center_vertical">
+
+                    <ImageView
+                        android:id="@+id/img_mute_mic"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/calling_bg_mute_mic" />
+
+                    <TextView
+                        android:id="@+id/tv_mute_mic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="74dp"
+                        android:gravity="center"
+                        android:text="@string/calling_toast_disable_mute"
+                        android:textColor="@color/calling_color_white"
+                        android:textSize="@dimen/ccalling_text_size_hint" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="160dp"
+                    android:layout_height="64dp"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="bottom|center_horizontal|center_vertical"></RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_soundMode"
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="bottom|center_horizontal|center_vertical">
+
+                    <ImageView
+                        android:id="@+id/img_soundMode"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/calling_bg_sound" />
+
+                    <TextView
+                        android:id="@+id/tx_soundMode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="74dp"
+                        android:gravity="center"
+                        android:text="@string/calling_toast_sound_EARPIECE"
+                        android:textColor="@color/calling_color_white"
+                        android:textSize="@dimen/ccalling_text_size_hint" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:gravity="center|top"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/ll_hangup"
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical"
+                    android:gravity="bottom|center_horizontal|center_vertical">
+
+                    <ImageView
+                        android:id="@+id/img_hangup"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        app:srcCompat="@drawable/calling_bg_hangup" />
+
+                    <TextView
+                        android:id="@+id/tv_hangup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="74dp"
+                        android:gravity="center"
+                        android:text="挂断"
+                        android:textColor="@color/calling_color_white"
+                        android:textSize="@dimen/ccalling_text_size_hint" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
