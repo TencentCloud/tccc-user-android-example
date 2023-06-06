@@ -6,8 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".CallingActivity">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
+        android:id="@+id/ll_calling"
         android:layout_height="match_parent"
         android:background="@color/color_videocall_background"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,14 +20,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="340dp"
+            android:layout_height="310dp"
             android:layout_alignParentBottom="true"
             android:gravity="bottom|center_horizontal|center_vertical"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
+                android:layout_height="80dp"
                 android:gravity="center|top"
                 android:orientation="horizontal">
 
@@ -48,7 +50,7 @@
 
                 <RelativeLayout
                     android:id="@+id/ll_mute_mic"
-                    android:layout_width="64dp"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:gravity="bottom|center_horizontal|center_vertical">
@@ -58,13 +60,14 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_weight="1"
+                        android:layout_centerInParent="true"
                         app:srcCompat="@drawable/calling_bg_mute_mic" />
 
                     <TextView
                         android:id="@+id/tv_mute_mic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="74dp"
+                        android:layout_marginTop="85dp"
                         android:gravity="center"
                         android:text="@string/calling_toast_disable_mute"
                         android:textColor="@color/calling_color_white"
@@ -74,13 +77,134 @@
 
                 <RelativeLayout
                     android:layout_width="160dp"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:gravity="bottom|center_horizontal|center_vertical"></RelativeLayout>
+                    android:orientation="vertical"
+                    android:gravity="bottom|center_horizontal|center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:orientation="vertical"
+                        android:id="@+id/dial_btn"
+                        android:background="@drawable/some_id"
+                        android:layout_centerInParent="true"
+                        android:gravity="center">
+
+                        <GridLayout
+                            android:columnCount="3"
+                            android:rowCount="3"
+                            android:useDefaultMargins="true"
+                            android:alignmentMode="alignBounds"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            >
+                            <View
+                                android:id="@+id/ellipse_9"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_column="0"
+                                android:layout_row="0"
+                                android:background="@drawable/ellipse_213"
+                                />
+                            <View
+                                android:id="@+id/ellipse_8"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_column="1"
+                                android:layout_row="0"
+                                android:background="@drawable/ellipse_213"
+                                />
+                            <View
+                                android:id="@+id/ellipse_7"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_column="2"
+                                android:layout_row="0"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:background="@drawable/ellipse_213"
+                                />
+                            <View
+                                android:id="@+id/ellipse_6"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_column="0"
+                                android:layout_row="1"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:background="@drawable/ellipse_213"
+                                />
+                            <View
+                                android:id="@+id/ellipse_5"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_column="1"
+                                android:layout_row="1"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:background="@drawable/ellipse_213"
+                                />
+                            <View
+                                android:id="@+id/ellipse_4"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_column="2"
+                                android:layout_row="1"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:background="@drawable/ellipse_213"
+                                />
+                            <View
+                                android:id="@+id/ellipse_3"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_column="0"
+                                android:layout_row="2"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:background="@drawable/ellipse_213"
+                                />
+                            <View
+                                android:id="@+id/ellipse_2"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_column="1"
+                                android:layout_row="2"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:background="@drawable/ellipse_213"
+                                />
+                            <View
+                                android:id="@+id/ellipse_1"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:layout_column="2"
+                                android:layout_row="2"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:background="@drawable/ellipse_213"
+                                />
+                        </GridLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tx_dail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="85dp"
+                        android:gravity="center"
+                        android:text="@string/calling_toast_dial"
+                        android:textColor="@color/calling_color_white"
+                        android:textSize="@dimen/ccalling_text_size_hint" />
+
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/ll_soundMode"
-                    android:layout_width="64dp"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:gravity="bottom|center_horizontal|center_vertical">
@@ -90,13 +214,14 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_weight="1"
+                        android:layout_centerInParent="true"
                         app:srcCompat="@drawable/calling_bg_sound" />
 
                     <TextView
                         android:id="@+id/tx_soundMode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="74dp"
+                        android:layout_marginTop="85dp"
                         android:gravity="center"
                         android:text="@string/calling_toast_sound_EARPIECE"
                         android:textColor="@color/calling_color_white"
@@ -124,13 +249,14 @@
                         android:id="@+id/img_hangup"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
+                        android:layout_centerInParent="true"
                         app:srcCompat="@drawable/calling_bg_hangup" />
 
                     <TextView
                         android:id="@+id/tv_hangup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="74dp"
+                        android:layout_marginTop="85dp"
                         android:gravity="center"
                         android:text="挂断"
                         android:textColor="@color/calling_color_white"
@@ -138,9 +264,101 @@
 
                 </RelativeLayout>
 
+
             </LinearLayout>
 
         </LinearLayout>
     </RelativeLayout>
-    
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/ll_senddtmfDiv"
+        android:padding="30dp">
+
+        <EditText
+            android:id="@+id/number_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <GridLayout
+                android:id="@+id/dial_pad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:rowCount="4"
+                android:useDefaultMargins="true"
+                android:alignmentMode="alignBounds">
+
+                <Button
+                    android:id="@+id/button_1"
+                    style="@style/DialButtonStyle"
+                    android:text="1" />
+
+                <Button
+                    android:id="@+id/button_2"
+                    style="@style/DialButtonStyle"
+                    android:text="2" />
+
+                <Button
+                    android:id="@+id/button_3"
+                    style="@style/DialButtonStyle"
+                    android:text="3" />
+
+                <Button
+                    android:id="@+id/button_4"
+                    style="@style/DialButtonStyle"
+                    android:text="4" />
+                <Button
+                    android:id="@+id/button_5"
+                    style="@style/DialButtonStyle"
+                    android:text="5" />
+                <Button
+                    android:id="@+id/button_6"
+                    style="@style/DialButtonStyle"
+                    android:text="6" />
+                <Button
+                    android:id="@+id/button_7"
+                    style="@style/DialButtonStyle"
+                    android:text="7" />
+                <Button
+                    android:id="@+id/button_8"
+                    style="@style/DialButtonStyle"
+                    android:text="8" />
+                <Button
+                    android:id="@+id/button_9"
+                    style="@style/DialButtonStyle"
+                    android:text="9" />
+
+
+                <Button
+                    android:id="@+id/button_star"
+                    style="@style/DialButtonStyle"
+                    android:text="*" />
+
+                <Button
+                    android:id="@+id/button_0"
+                    style="@style/DialButtonStyle"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/button_hash"
+                    style="@style/DialButtonStyle"
+                    android:text="#" />
+            </GridLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

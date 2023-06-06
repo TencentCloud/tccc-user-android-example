@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         });
         textView = findViewById(R.id.textView);
         // 必须先调用这个后才可以获取版本号
-        TCCCCloud.sharedInstance(this.getApplicationContext());
+        TCCCCloud tcccCloud = TCCCCloud.sharedInstance(this.getApplicationContext());
         // 获取SDK 版本号
-         String version = TCCCCloud.getSDKVersion();
+         String version = tcccCloud.getSDKVersion();
          textView.setText(getString(R.string.app_version)+"("+version+")");
     }
 }

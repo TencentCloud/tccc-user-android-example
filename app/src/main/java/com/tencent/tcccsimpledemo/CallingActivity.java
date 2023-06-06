@@ -6,7 +6,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +39,11 @@ public class CallingActivity extends TCCCBaseActivity {
     private TextView  tv_mute_mic;
     protected boolean mIsMuteMic     = false;  // 是否静音
     protected boolean mIsCalling     = false; // 正在通话中
+
+    private LinearLayout ll_senddtmfDiv;
+    private TextView tx_dail;
+    protected GridLayout dialPad;
+    private  EditText numberInput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +73,11 @@ public class CallingActivity extends TCCCBaseActivity {
         ll_mute_mic = findViewById(R.id.ll_mute_mic);
         img_mute_mic = findViewById(R.id.img_mute_mic);
         tv_mute_mic = findViewById(R.id.tv_mute_mic);
-
+        ll_senddtmfDiv = findViewById(R.id.ll_senddtmfDiv);
+        dialPad = findViewById(R.id.dial_pad);
+        numberInput = findViewById(R.id.number_input);
+        ll_senddtmfDiv.setVisibility(View.GONE);
+        tx_dail = findViewById(R.id.tx_dail);
         mainHandler = new Handler(this.getApplicationContext().getMainLooper());
         initListener();
     }
@@ -92,6 +105,40 @@ public class CallingActivity extends TCCCBaseActivity {
                 mTCCCCloud.terminate();
             }
         });
+        findViewById(R.id.dial_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tx_dail.getText().equals("关闭拨号盘")) {
+                    numberInput.setText("");
+                    ll_senddtmfDiv.setVisibility(View.GONE);
+                    tx_dail.setText(R.string.calling_toast_dial);
+                } else {
+                    ll_senddtmfDiv.setVisibility(View.VISIBLE);
+                    tx_dail.setText("关闭拨号盘");
+                }
+            }
+        });
+        for (int i=0;i < dialPad.getChildCount();i++) {
+            Button item = (Button) dialPad.getChildAt(i);
+            item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String keyNumber = item.getText().toString();
+                    numberInput.setText(numberInput.getText().toString()+keyNumber);
+                    mTCCCCloud.sendDTMF(keyNumber.charAt(0), new TXCallback() {
+                        @Override
+                        public void onSuccess() {
+                            //
+                        }
+
+                        @Override
+                        public void onError(int i, String s) {
+                            //
+                        }
+                    });
+                }
+            });
+        }
     }
 
     /**

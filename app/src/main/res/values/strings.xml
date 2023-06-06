@@ -4,6 +4,7 @@
     <string name="calling_toast_enable_camera">开启摄像头</string>
     <string name="calling_toast_disable_camera">关闭摄像头</string>
     <string name="calling_toast_sound_EARPIECE">切为耳麦</string>
+    <string name="calling_toast_dial">拨号键盘</string>
     <string name="calling_toast_sound_SPEAKER">切为扬声器</string>
     <string name="calling_toast_enable_mute">开启静音</string>
     <string name="calling_toast_disable_mute">关闭静音</string>
