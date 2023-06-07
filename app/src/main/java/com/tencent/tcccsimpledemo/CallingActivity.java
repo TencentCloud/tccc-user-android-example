@@ -22,7 +22,6 @@ import com.tencent.tccc.TCCCCloudListener;
 import com.tencent.tccc.TXCallback;
 import com.tencent.tcccsimpledemo.base.TCCCBaseActivity;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class CallingActivity extends TCCCBaseActivity {
@@ -258,7 +257,7 @@ public class CallingActivity extends TCCCBaseActivity {
         txt_tips.setText("呼叫中...");
         // 发起视频呼叫
         TCCCCloudDef.TCCCCallParams callParams = new TCCCCloudDef.TCCCCallParams();
-        callParams.channelId = GenerateTestUserSig.VIDEO_CHANNELID;
+        callParams.channelId = GenerateTestUserSig.AUDIO_CHANNELID;
         mTCCCCloud.startCall(callParams, new TXCallback() {
             @Override
             public void onSuccess() {
