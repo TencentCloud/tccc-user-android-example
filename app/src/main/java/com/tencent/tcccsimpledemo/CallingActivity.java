@@ -235,13 +235,13 @@ public class CallingActivity extends TCCCBaseActivity {
         // 开启本地音频采集
         mTCCCCloud.startLocalAudio(TCCCCloudDef.TCCC_AUDIO_QUALITY_SPEECH);
         txt_tips.setText("准备呼叫...");
-
+        String clinetUserId = "testUserId";
         // 正确的 UserSig 签发方式是将 UserSig 的计算代码集成到您的服务端，并提供面向 App 的接口，在需要 UserSig 时由您的 App 向业务服务器发起请求获取动态 UserSig。
         // 更多详情请参见 [创建用户数据签名](https://cloud.tencent.com/document/product/679/58260)
-        GenerateTestUserSig.genTestUserSig("testUserId", new GenerateTestUserSig.UserSigCallBack() {
+        GenerateTestUserSig.genTestUserSig(clinetUserId, new GenerateTestUserSig.UserSigCallBack() {
             @Override
             public void onSuccess(String userSig) {
-                startVideoCall();
+                startVideoCall(clinetUserId,userSig);
             }
 
             @Override
@@ -252,12 +252,15 @@ public class CallingActivity extends TCCCBaseActivity {
     }
 
     /// 发起呼叫
-    private void startVideoCall() {
+    private void startVideoCall(String clinetUserId,String userSig) {
         mIsCalling = false;
         txt_tips.setText("呼叫中...");
-        // 发起视频呼叫
+        // 发起音频呼叫，请每次呼叫前重新生成userSig。
         TCCCCloudDef.TCCCCallParams callParams = new TCCCCloudDef.TCCCCallParams();
         callParams.channelId = GenerateTestUserSig.AUDIO_CHANNELID;
+        callParams.sdkAppId = GenerateTestUserSig.SDKAPPID;
+        callParams.userSig = userSig;
+        callParams.userId = clinetUserId;
         mTCCCCloud.startCall(callParams, new TXCallback() {
             @Override
             public void onSuccess() {
