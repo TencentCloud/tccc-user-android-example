@@ -19,6 +19,7 @@ import com.tencent.debug.GenerateTestUserSig;
 import com.tencent.tccc.TCCCCloud;
 import com.tencent.tccc.TCCCCloudDef;
 import com.tencent.tccc.TCCCCloudListener;
+import com.tencent.tccc.TCCCDeviceManager;
 import com.tencent.tccc.TXCallback;
 import com.tencent.tcccsimpledemo.base.TCCCBaseActivity;
 
@@ -50,6 +51,8 @@ public class CallingActivity extends TCCCBaseActivity {
         initView();
         if (checkPermission()) {
             initTCCC();
+        } else {
+            //
         }
     }
 
@@ -62,6 +65,7 @@ public class CallingActivity extends TCCCBaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         TCCCCloud.destroySharedInstance();
+        mTCCCCloud = null;
     }
 
     private void initView() {
@@ -229,11 +233,13 @@ public class CallingActivity extends TCCCBaseActivity {
     private void initTCCC(){
         /// 创建实例和设置事件回调
         mTCCCCloud = TCCCCloud.sharedInstance(getApplicationContext());
+
         /// 设置事件回调
         mTCCCCloud.setListener(mTCCCCloudListener);
 
         // 开启本地音频采集
         mTCCCCloud.startLocalAudio(TCCCCloudDef.TCCC_AUDIO_QUALITY_SPEECH);
+        mTCCCCloud.getDeviceManager().setAudioRoute(TCCCDeviceManager.TCCCAudioRoute.TCCCAudioRouteSpeakerphone);
         txt_tips.setText("准备呼叫...");
         String clinetUserId = "testUserId";
         // 正确的 UserSig 签发方式是将 UserSig 的计算代码集成到您的服务端，并提供面向 App 的接口，在需要 UserSig 时由您的 App 向业务服务器发起请求获取动态 UserSig。
