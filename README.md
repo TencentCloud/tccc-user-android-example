@@ -1,5 +1,5 @@
-# 腾讯云呼叫中心 Android 用户端简单Demo
-腾讯云呼叫中心支持安卓设备音视频通话，用户通过安卓设备发起通话，客服可在电脑端工作台接待。
+# 腾讯云联络中心 Android 用户端简单Demo
+腾讯云联络中心支持安卓设备音视频通话，用户通过安卓设备发起通话，客服可在电脑端工作台接待。
 
 - [快速跑通 Android Demo](QuickStartDemo.md)
 - [快速集成 Android SDK](QuickStartSDK.md)

@@ -8,5 +8,5 @@
     <string name="calling_toast_sound_SPEAKER">切为扬声器</string>
     <string name="calling_toast_enable_mute">开启静音</string>
     <string name="calling_toast_disable_mute">关闭静音</string>
-    <string name="app_version">腾讯云呼叫中心</string>
+    <string name="app_version">腾讯云联络中心</string>
 </resources>

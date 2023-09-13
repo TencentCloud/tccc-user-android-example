@@ -31,7 +31,7 @@ params.channelId = "";  // 呼叫频道Id
 params.userId= "";  // 用户标识（必填）
 params.userSig = "";    // 用户数据签名（一次性有效，请每次重新生成）
 params.clientData = ""; // 用户签名数据
-params.sdkAppId = 0;    // 腾讯云呼叫中心应用ID（必填）,1400开头的
+params.sdkAppId = 0;    // 腾讯云联络中心应用ID（必填）,1400开头的
 mTCCCCloud.startCall(params, new TXCallback() {
     @Override
     public void onSuccess() {
