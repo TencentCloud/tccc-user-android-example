@@ -10,17 +10,28 @@ import android.widget.TextView;
 import com.tencent.tccc.TCCCCloud;
 
 public class MainActivity extends AppCompatActivity {
+    private Button bntStartAudioCall;
     private Button bntStartVideoCall;
     private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bntStartVideoCall = findViewById(R.id.btn_startVideoCall);
+        bntStartAudioCall = findViewById(R.id.btn_startVoipCall);
+        bntStartAudioCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CallingActivity.class);
+                intent.putExtra("callType","audio");
+                startActivity(intent);
+            }
+        });
+        bntStartVideoCall = findViewById(R.id.btn_startVedioCall);
         bntStartVideoCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CallingActivity.class);
+                intent.putExtra("callType","video");
                 startActivity(intent);
             }
         });

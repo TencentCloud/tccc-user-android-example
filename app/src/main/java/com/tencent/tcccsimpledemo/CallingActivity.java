@@ -21,11 +21,14 @@ import com.tencent.tccc.TCCCCloudDef;
 import com.tencent.tccc.TCCCCloudListener;
 import com.tencent.tccc.TCCCDeviceManager;
 import com.tencent.tccc.TXCallback;
+import com.tencent.tccc.ui.TXVideoView;
 import com.tencent.tcccsimpledemo.base.TCCCBaseActivity;
 
 import java.util.UUID;
 
 public class CallingActivity extends TCCCBaseActivity {
+    private TXVideoView txvMainVideoView;
+    private TXVideoView txvSmallView;
 
     private TextView txt_tips;
     private TCCCCloud mTCCCCloud;
@@ -39,6 +42,7 @@ public class CallingActivity extends TCCCBaseActivity {
     private TextView  tv_mute_mic;
     protected boolean mIsMuteMic     = false;  // 是否静音
     protected boolean mIsCalling     = false; // 正在通话中
+    protected boolean isAudioCall    = false; // 是否为音频通话
 
     private LinearLayout ll_senddtmfDiv;
     private TextView tx_dail;
@@ -69,6 +73,9 @@ public class CallingActivity extends TCCCBaseActivity {
     }
 
     private void initView() {
+        txvMainVideoView = findViewById(R.id.txv_main);
+        txvSmallView = findViewById(R.id.txv_small);
+
         txt_tips = findViewById(R.id.txt_tips);
         ll_hangup = findViewById(R.id.ll_hangup);
         img_hangup = findViewById(R.id.img_hangup);
@@ -82,6 +89,20 @@ public class CallingActivity extends TCCCBaseActivity {
         ll_senddtmfDiv.setVisibility(View.GONE);
         tx_dail = findViewById(R.id.tx_dail);
         mainHandler = new Handler(this.getApplicationContext().getMainLooper());
+
+        Intent intent = getIntent();
+        String callType = intent.getStringExtra("callType");
+        if ("audio".equals(callType)) {
+            isAudioCall = true;
+            txvMainVideoView.setVisibility(View.GONE);
+            txvSmallView.setVisibility(View.GONE);
+//            ll_camera.setVisibility(View.GONE);
+//            ll_soundMode.setVisibility(View.VISIBLE);
+        } else {
+//            ll_camera.setVisibility(View.VISIBLE);
+//            ll_soundMode.setVisibility(View.GONE);
+        }
+
         initListener();
     }
 
@@ -247,7 +268,8 @@ public class CallingActivity extends TCCCBaseActivity {
         GenerateTestUserSig.genTestUserSig(clinetUserId, new GenerateTestUserSig.UserSigCallBack() {
             @Override
             public void onSuccess(String userSig) {
-                startVideoCall(clinetUserId,userSig);
+
+                startInnerCall(clinetUserId,userSig);
             }
 
             @Override
@@ -258,7 +280,7 @@ public class CallingActivity extends TCCCBaseActivity {
     }
 
     /// 发起呼叫
-    private void startVideoCall(String clinetUserId,String userSig) {
+    private void startInnerCall(String clinetUserId, String userSig) {
         mIsCalling = false;
         txt_tips.setText("呼叫中...");
         // 发起音频呼叫，请每次呼叫前重新生成userSig。
@@ -267,6 +289,7 @@ public class CallingActivity extends TCCCBaseActivity {
         callParams.sdkAppId = GenerateTestUserSig.SDKAPPID;
         callParams.userSig = userSig;
         callParams.userId = clinetUserId;
+        callParams.type = TCCCCloudDef.TCCCCallType.Voip;
         mTCCCCloud.startCall(callParams, new TXCallback() {
             @Override
             public void onSuccess() {
