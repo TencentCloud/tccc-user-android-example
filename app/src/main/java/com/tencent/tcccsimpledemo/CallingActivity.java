@@ -101,6 +101,8 @@ public class CallingActivity extends TCCCBaseActivity {
         } else {
 //            ll_camera.setVisibility(View.VISIBLE);
 //            ll_soundMode.setVisibility(View.GONE);
+            txvMainVideoView.setVisibility(View.VISIBLE);
+            txvSmallView.setVisibility(View.VISIBLE);
         }
 
         initListener();
@@ -226,6 +228,18 @@ public class CallingActivity extends TCCCBaseActivity {
         }
 
         @Override
+        public void onUserVideoAvailable(String userId, boolean available) {
+            super.onUserVideoAvailable(userId,available);
+            if(available) {
+                // 显示坐席端画面
+                mTCCCCloud.startRemoteView(userId,TCCCCloudDef.TCCC_VIDEO_STREAM_TYPE_BIG,txvMainVideoView);
+                txvMainVideoView.setVisibility(View.VISIBLE);
+            }
+            else {
+                txvMainVideoView.setVisibility(View.GONE);
+            }
+        }
+        @Override
         public void onAudioVolume(TCCCCloudDef.TCCCVolumeInfo volumeInfo) {
             super.onAudioVolume(volumeInfo);
         }
@@ -257,7 +271,13 @@ public class CallingActivity extends TCCCBaseActivity {
 
         /// 设置事件回调
         mTCCCCloud.setListener(mTCCCCloudListener);
-
+        if (!isAudioCall) {
+            TCCCCloudDef.TCCCRenderParams tcccRenderParams = new TCCCCloudDef.TCCCRenderParams();
+            tcccRenderParams.fillMode = TCCCCloudDef.TCCC_VIDEO_RENDER_MODE_FILL;
+            mTCCCCloud.setLocalRenderParams(tcccRenderParams);
+            // 开启摄像头预览
+            mTCCCCloud.startLocalPreview(true, txvSmallView);
+        }
         // 开启本地音频采集
         mTCCCCloud.startLocalAudio(TCCCCloudDef.TCCC_AUDIO_QUALITY_SPEECH);
         mTCCCCloud.getDeviceManager().setAudioRoute(TCCCDeviceManager.TCCCAudioRoute.TCCCAudioRouteSpeakerphone);
@@ -268,8 +288,7 @@ public class CallingActivity extends TCCCBaseActivity {
         GenerateTestUserSig.genTestUserSig(clinetUserId, new GenerateTestUserSig.UserSigCallBack() {
             @Override
             public void onSuccess(String userSig) {
-
-                startInnerCall(clinetUserId,userSig);
+                startInnerCall(clinetUserId,userSig,isAudioCall?TCCCCloudDef.TCCCCallType.Voip:TCCCCloudDef.TCCCCallType.Video);
             }
 
             @Override
@@ -280,16 +299,20 @@ public class CallingActivity extends TCCCBaseActivity {
     }
 
     /// 发起呼叫
-    private void startInnerCall(String clinetUserId, String userSig) {
+    private void startInnerCall(String clinetUserId, String userSig,TCCCCloudDef.TCCCCallType callType) {
         mIsCalling = false;
         txt_tips.setText("呼叫中...");
         // 发起音频呼叫，请每次呼叫前重新生成userSig。
         TCCCCloudDef.TCCCCallParams callParams = new TCCCCloudDef.TCCCCallParams();
-        callParams.channelId = GenerateTestUserSig.AUDIO_CHANNELID;
+        if(callType == TCCCCloudDef.TCCCCallType.Voip) {
+            callParams.channelId = GenerateTestUserSig.AUDIO_CHANNELID;
+        } else {
+            callParams.channelId = GenerateTestUserSig.VIDEO_CHANNELID;
+        }
         callParams.sdkAppId = GenerateTestUserSig.SDKAPPID;
         callParams.userSig = userSig;
         callParams.userId = clinetUserId;
-        callParams.type = TCCCCloudDef.TCCCCallType.Voip;
+        callParams.type = callType;
         mTCCCCloud.startCall(callParams, new TXCallback() {
             @Override
             public void onSuccess() {
