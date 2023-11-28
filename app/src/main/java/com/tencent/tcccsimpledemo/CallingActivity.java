@@ -94,6 +94,7 @@ public class CallingActivity extends TCCCBaseActivity {
         String callType = intent.getStringExtra("callType");
         if ("audio".equals(callType)) {
             isAudioCall = true;
+            findViewById(R.id.dial_btn).setVisibility(View.VISIBLE);
             txvMainVideoView.setVisibility(View.GONE);
             txvSmallView.setVisibility(View.GONE);
 //            ll_camera.setVisibility(View.GONE);
@@ -101,6 +102,7 @@ public class CallingActivity extends TCCCBaseActivity {
         } else {
 //            ll_camera.setVisibility(View.VISIBLE);
 //            ll_soundMode.setVisibility(View.GONE);
+            findViewById(R.id.dial_btn).setVisibility(View.GONE);
             txvMainVideoView.setVisibility(View.VISIBLE);
             txvSmallView.setVisibility(View.VISIBLE);
         }
