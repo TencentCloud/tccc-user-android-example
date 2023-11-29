@@ -1,6 +1,6 @@
 # 快速跑通用户端Android Demo
 
-本文主要介绍如何快速跑通腾讯云联络中心用户端 Android TCCC User Demo（音频客服），只要按照如下步骤进行配置，就可以跑通访客端的 Android Demo。
+本文主要介绍如何快速跑通腾讯云联络中心用户端 Android TCCC User Demo（音视频客服），只要按照如下步骤进行配置，就可以跑通访客端的 Android Demo。
 
 ## 开发环境要求
 - Android Studio 3.5+。
@@ -12,8 +12,8 @@
 
 ## 操作步骤
 [](id:step1)
-### 步骤1：配置音频客服
-1. 登录 [联络中心管理端](https://tccc.qcloud.com/login)，选择**登录的联络中心** > **管理端** > **音频客服** > **技能组管理** > **添加技能组** 。
+### 步骤1：配置音频客服或者视频客服
+1. 登录 [联络中心管理端](https://tccc.qcloud.com/login)，选择**登录的联络中心** > **管理端** > **音频客服 / 视频客服** > **技能组管理** > **添加技能组** 。
 
 ![](https://qcloudimg.tencent-cloud.cn/image/document/fae6c3b42347a16a06f0dda49dfc0f48.png)
 
@@ -21,19 +21,19 @@
 
 ![](https://qcloudimg.tencent-cloud.cn/image/document/09f724109a6e89aa5d645725d8fa7440.png)
 
-3. 新增 IVR， **登录的联络中心** > **管理端** > **音频客服** > **IVR管理** > **呼入IVR** > **新建**。
+3. 新增 IVR， **登录的联络中心** > **管理端** > **音频客服 / 视频客服** > **IVR管理** > **呼入IVR** > **新建**。
 
 ![](https://qcloudimg.tencent-cloud.cn/image/document/ac2d7643f2be4c01d9cd8de03a981db4.png)
 
-4. 新建 IVR，在 IVR 画布左上角输入 IVR 名称，如：音频客服 IVR。根据您的场景需要拖拽 IVR 模块到画布区域合适的位置释放，连接模块并在各个模块填写相应信息。IVR 流程必须以开始模块为第一个模块，以结束模块为最后一个模块。
+4. 新建 IVR，在 IVR 画布左上角输入 IVR 名称，如：音频客服 IVR。根据您的场景需要拖拽 IVR 模块到画布区域合适的位置释放，连接模块并在各个模块填写相应信息。IVR 流程必须以开始模块为第一个模块，以结束模块为最后一个模块。（视频客服无此步骤）
 
 ![](https://qcloudimg.tencent-cloud.cn/image/document/d05ee5a7c6d0cbaa8f747f48f1d92597.png)
 
-5. 新增配置音频入口。 选择**管理端** > **渠道管理** > **配置音频入口** > **新增 **，输入音频入口名称，
+5. 新增配置音频入口。 选择**管理端** > **渠道管理** > **配置音频或者视频入口** > **新增 **，输入音频或者视频入口名称，
 
 ![](https://qcloudimg.tencent-cloud.cn/image/document/fd65a7d5f1e2ce995ab908c28f70a761.png)
 
-6. 复制音频入口 ID。
+6. 复制音频或者视频入口 ID。
 
 ![](https://qcloudimg.tencent-cloud.cn/image/document/e69f60d860d3e98da2d827e19766d0b5.png)
 
